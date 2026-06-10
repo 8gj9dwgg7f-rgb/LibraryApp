@@ -1,36 +1,18 @@
 namespace LibraryApp.Models
 {
-    public class Book
+    public class Book : LibraryItem
     {
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public int Year { get; set; }
+        public int Pages { get; set; }
 
-        public Book(string title, string author, int year)
+        public Book(string title, string author, int year, int pages)
+            : base(title, author, year)
         {
-            if (string.IsNullOrWhiteSpace(title))
-            {
-                throw new ArgumentException("Название не может быть пустым", nameof(title));
-            }
-
-            if (string.IsNullOrWhiteSpace(author))
-            {
-                throw new ArgumentException("Автор не может быть пустым", nameof(author));
-            }
-
-            if (year < 0 || year > DateTime.Now.Year + 1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(year), "Недопустимый год издания");
-            }
-
-            Title = title;
-            Author = author;
-            Year = year;
+            Pages = pages;
         }
 
-        public void DisplayInfo()
+        public override void DisplayInfo()
         {
-            Console.WriteLine($"Название: {Title}, Автор: {Author}, Год: {Year}");
+            Console.WriteLine($"Книга: {Title} / {Author} ({Year}) — {Pages} стр.");
         }
     }
 }
