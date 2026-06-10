@@ -8,6 +8,11 @@ namespace LibraryApp.Models
         public Book(string title, string author, int year, int pages)
             : base(title, author, year)
         {
+            if (pages <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(pages), "Количество страниц должно быть больше нуля");
+            }
+
             Pages = pages;
         }
 

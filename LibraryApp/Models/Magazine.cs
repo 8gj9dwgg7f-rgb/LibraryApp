@@ -7,6 +7,11 @@ namespace LibraryApp.Models
         public Magazine(string title, string author, int year, int issueNumber)
             : base(title, author, year)
         {
+            if (issueNumber <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(issueNumber), "Номер выпуска должен быть больше нуля");
+            }
+
             IssueNumber = issueNumber;
         }
 
